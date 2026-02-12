@@ -876,7 +876,7 @@ body { background-color: var(--light); color: var(--dark); padding-bottom: 80px;
 }
 
 .header {
-    z-index: 4000; /* Asegura que el dropdown pase por encima de todo */
+    z-index: 1000; /* Asegura que el dropdown pase por encima de todo */
 }
 
 .category-nav {
@@ -884,3 +884,4 @@ body { background-color: var(--light); color: var(--dark); padding-bottom: 80px;
     top: 110%;
 
 }
+
