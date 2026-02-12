@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Cuaderno A4 (100 hojas)",
+    "price": 2.00,
+    "category": "Escolares",
+    "img": "img/cuaderno.png"
+  },
+  {
+    "id": 2,
+    "name": "Lápices de Colores (x12)",
+    "price": 3.50,
+    "category": "Escolares",
+    "img": "https://via.placeholder.com/150?text=Colores"
+  },
+  {
+    "id": 3,
+    "name": "Bolígrafo Gel Negro",
+    "price": 1.25,
+    "category": "Escolares",
+    "img": "https://via.placeholder.com/150?text=Boligrafo"
+  },
+  {
+    "id": 4,
+    "name": "Resma Papel Bond A4",
+    "price": 4.50,
+    "category": "Oficina",
+    "img": "https://via.placeholder.com/150?text=Papel"
+  },
+  {
+    "id": 5,
+    "name": "Marcadores Permanentes",
+    "price": 5.00,
+    "category": "Arte",
+    "img": "https://via.placeholder.com/150?text=Marcadores"
+  },
+  {
+    "id": 6,
+    "name": "Tijeras Escolares",
+    "price": 1.80,
+    "category": "Escolares",
+    "img": "https://via.placeholder.com/150?text=Tijeras"
+  },
+  {
+    "id": 7,
+    "name": "Juego de Geometría",
+    "price": 2.50,
+    "category": "Escolares",
+    "img": "https://via.placeholder.com/150?text=Geometria"
+  },
+  {
+    "id": 8,
+    "name": "Goma de Borrar (Grande)",
+    "price": 0.50,
+    "category": "Escolares",
+    "img": "https://via.placeholder.com/150?text=Goma"
+  },
+  {
+    "id": 9,
+    "name": "Set de Pinceles",
+    "price": 5.20,
+    "category": "Arte",
+    "img": "img/pinceles.png"
+  },
+  {
+    "id": 10,
+    "name": "Caja Sorpresa Kraft",
+    "price": 2.00,
+    "category": "Cajas",
+    "img": "img/caja-sorpresa.png"
+  },
+  {
+    "id": 11,
+    "name": "Agenda Ejecutiva",
+    "price": 10.00,
+    "category": "Oficina",
+    "img": "img/agenda.png"
+  },
+  {
+    "id": 12,
+    "name": "Vinil Adhesivo",
+    "price": 3.00,
+    "category": "Creativa",
+    "img": "img/vinil.png"
+  },
+  {
+    "id": 13,
+    "name": "Esternocleidomastoideo",
+    "price": 100.00,
+    "category": "Juegos",
+    "img": "img/esternocleidomastoideo.png"
+  },
+  {
+    "id": 0,
+    "name": "",
+    "price": 0.00,
+    "category": "",
+    "img": "https://via.placeholder.com/150"
+  }
+
+  
+]

@@ -1,0 +1,885 @@
+:root {
+    --primary: #FF6B6B; /* Color vibrante para llamar la atención */
+    --secondary: #4ECDC4;
+    --dark: #2D3436;
+    --light: #F7F9FC;
+    --white: #FFFFFF;
+    --whatsapp: #25D366;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body { background-color: var(--light); color: var(--dark); padding-bottom: 80px; /* Espacio para botón flotante móvil */ }
+
+/* Layout & Utils */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.btn-primary { background: var(--primary); color: var(--white); border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; }
+.btn-whatsapp { background: var(--whatsapp); color: var(--white); border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; transition: var(--transition); }
+.btn-whatsapp:hover { background: #1ebc57; transform: translateY(-2px); }
+.btn-whatsapp:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+/* Header */
+
+.header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1px; }
+
+.header {
+    
+    background: linear-gradient(to right, #FF6B6B, #FFD93D, #6BCB77, #4D96FF, #9B59B6);
+    position: sticky;
+    top: 0;
+    z-index: 4000;
+    box-shadow: none; /* Quitamos la sombra típica para usar la curva */
+    padding: 5px; /* Importante para que el SVG pegue abajo */
+}
+
+
+
+
+
+
+.search-bar { display: flex; flex: 1; max-width: 400px; margin: 0 15px; }
+.search-bar input { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px 0 0 4px; outline: none; }
+.search-bar button { padding: 8px 15px; background: var(--dark); color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer; }
+.btn-contact { background: transparent; border: 1px solid var(--dark); padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; margin-left: 5px;}
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white; padding: 3rem 1rem; text-align: center; margin-bottom: 2rem; border-radius: 0 0 20px 20px; }
+.hero h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+/* Productos */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.5rem; padding-bottom: 2rem; }
+.product-card { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); display: flex; flex-direction: column; }
+.product-card:hover { transform: translateY(-5px); }
+.product-img { width: 100%; height: 150px; object-fit: cover; background: #eee; }
+.product-info { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.product-title { font-size: 1rem; font-weight: 600; margin-bottom: 5px; }
+.product-price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+.btn-add { width: 100%; background: var(--dark); color: white; border: none; padding: 8px; margin-top: 10px; border-radius: 5px; cursor: pointer; }
+.btn-add:hover { background: #000; }
+
+/* Floating Cart Icon (Bottom Right per request) */
+.floating-cart { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4); cursor: pointer; z-index: 1000; transition: var(--transition); }
+.floating-cart:hover { transform: scale(1.1); }
+.badge { position: absolute; top: -5px; right: -5px; background: var(--dark); color: white; font-size: 0.8rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--white); }
+
+/* Mini Checkout Sidebar */
+.cart-sidebar { padding-top: 100px; position: fixed; top: 0px; right: 0; /* Right side panel */ width: 100%; max-width: 400px; height: 100vh; background: var(--white); box-shadow: 2px 0 10px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease-in-out; z-index: 2000; display: flex; flex-direction: column; }
+.cart-sidebar.active { transform: translateX(0); }
+
+.cart-header { padding: 1rem; background: var(--dark); color: white; display: flex; justify-content: space-between; align-items: center; }
+.close-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+.cart-body { flex-grow: 1; overflow-y: auto; padding: 1rem; }
+.cart-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.cart-item-details h5 { font-size: 0.95rem; margin-bottom: 4px; }
+.cart-item-details p { color: var(--primary); font-weight: 600; }
+.cart-controls { display: flex; align-items: center; gap: 8px; }
+.qty-btn { width: 25px; height: 25px; border-radius: 50%; border: 1px solid #ddd; background: white; cursor: pointer; }
+.remove-btn { color: #ff4757; border: none; background: none; cursor: pointer; margin-right: 10px; font-size: 1.2rem; }
+
+.checkout-form { background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-top: 20px; }
+.form-group { margin-bottom: 10px; }
+.form-group label { display: block; font-size: 0.9rem; margin-bottom: 5px; color: #555; }
+.form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; outline: none; }
+
+.cart-footer { padding: 1.5rem; background: var(--white); border-top: 1px solid #eee; box-shadow: 0 -4px 10px rgba(0,0,0,0.05); }
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+.summary-row.total { font-weight: 700; font-size: 1.2rem; color: var(--dark); border-top: 2px solid #eee; padding-top: 10px; margin-top: 10px; }
+
+/* Overlay & Modals */
+.overlay { position: fixed; top: 0; right: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1500; display: none; }
+.overlay.active { display: block; }
+
+.modal { display: none; position: fixed; z-index: 3000; right: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+.modal.show { display: flex; }
+.modal-content { background-color: #fefefe; padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; position: relative; animation: modalAnim 0.3s; }
+.close-modal { position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; cursor: pointer; }
+@keyframes modalAnim { from {opacity: 0; transform: translateY(-50px);} to {opacity: 1; transform: translateY(0);} }
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .product-grid { grid-template-columns: repeat(4, 1fr); }
+    .hero h2 { font-size: 3rem; }
+}
+
+.logo-img {
+    /* Ajusta este valor según el tamaño que desees */
+    height: 100px; 
+    width: auto; /* Mantiene la proporción original */
+    object-fit: contain; /* Asegura que la imagen no se corte */
+    display: block;
+}
+
+/* Ajuste opcional para el texto del logo */
+.logo h1, .logo span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* Responsive: Logo un poco más pequeño en móviles */
+@media (max-width: 480px) {
+    .logo-img {
+        height: 32px;
+    }
+}
+
+/* Estilos para el Modal de Contacto */
+.modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.info-section {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.info-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dark);
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.info-section p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.map-link {
+    font-size: 0.8rem;
+    color: var(--secondary);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Grilla de Acciones Rápidas */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--light);
+    text-decoration: none;
+    color: var(--dark);
+    border: 1px solid #eee;
+    transition: var(--transition);
+}
+
+.social-item i { font-size: 1.5rem; margin-bottom: 5px; }
+.social-item:hover { background: #fff; transform: translateY(-3px); box-shadow: var(--shadow); }
+
+.social-item.fb { color: #1877F2; }
+.social-item.ig { color: #E4405F; }
+.social-item.share { color: var(--primary); cursor: pointer; }
+
+/* Estilos para el mapa embebido */
+.map-container {
+    margin-top: 12px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden; /* Corta las esquinas del iframe */
+    border: 1px solid #eee;
+    line-height: 0; /* Elimina espacio extra debajo del iframe */
+}
+
+.map-container iframe {
+    filter: grayscale(0.2); /* Un toque sutil de estilo */
+    transition: var(--transition);
+}
+
+.map-container iframe:hover {
+    filter: grayscale(0); /* Se ilumina al pasar el mouse */
+}
+
+/* Feedback de búsqueda */
+.search-feedback {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.btn-clear-search {
+    background: none;
+    border: none;
+    color: var(--primary);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Animación para los productos al filtrar */
+.product-card {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Carrusel Hero */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 0 0 25px 25px;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Oculta scroll en Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Oculta scroll en Chrome/Safari */
+}
+
+.slide {
+    min-width: 100%;
+    height: 350px;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.slide-content {
+    max-width: 600px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slide h2 {
+    font-size: 2.5rem;
+    margin: 15px 0;
+}
+
+.btn-hero {
+    background: white;
+    color: var(--dark);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-hero:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Indicadores */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background: white;
+    width: 30px;
+    border-radius: 10px;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--dark);
+    color: #bdc3c7;
+    padding: 60px 0 20px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h2.footer-logo {
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.footer-col p {
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+/* Redes y Confianza */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.footer-socials a { color: #bdc3c7; transition: var(--transition); }
+.footer-socials a:hover { color: var(--primary); transform: translateY(-3px); }
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.trust-item i {
+    font-size: 1.2rem;
+    color: var(--secondary);
+}
+
+.payment-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.badge-pay {
+    background: rgba(255,255,255,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--white);
+}
+
+/* Bottom bar */
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        text-align: center;
+    }
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-socials {
+        justify-content: center;
+    }
+    .trust-item {
+        justify-content: center;
+    }
+    .payment-badges {
+        justify-content: center;
+    }
+}
+
+.smart-kits {
+    margin: 40px auto;
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.kits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.kit-card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border: 2px solid var(--secondary);
+    padding: 25px;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 5px 5px 15px #d1d1d1, -5px -5px 15px #ffffff;
+}
+
+.kit-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.kit-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.kit-card h4 { margin-bottom: 10px; color: var(--dark); }
+.kit-card p { font-size: 0.85rem; color: #666; margin-bottom: 15px; }
+
+.kit-price {
+    display: block;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.btn-kit {
+    width: 100%;
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Temporizador */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.time-block {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    min-width: 60px;
+    backdrop-filter: blur(5px);
+}
+
+.time-block span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.time-block small {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+/* Toast Notification (NUEVO) */
+.toast-notification {
+    position: fixed;
+    top: -100px; /* Empieza fuera de la pantalla */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--secondary);
+}
+
+.toast-notification.show {
+    top: 20px; /* Baja al centro superior */
+}
+
+
+.category-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* Permite el scroll horizontal */
+    padding: 5px 15px;
+    scrollbar-width: none; /* Oculta scroll en Firefox */
+}
+
+.category-scroll::-webkit-scrollbar {
+    display: none; /* Oculta scroll en Chrome/Safari */
+}
+
+
+/* Botón que activa el menú */
+.dropdown-toggle {
+    width: 100%;
+    padding: 15px 20px;
+    background: #fff;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+}
+
+
+/* Rotación de flecha */
+.arrow-rotate {
+    transform: rotate(180deg);
+}
+
+
+/* Estilo del contador */
+.cat-count {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+
+/* El contenedor debe ser relativo para que el menú flote justo debajo de él */
+.category-dropdown-container {
+    position: relative; 
+    margin: 10px 15px;
+    z-index: 1100; /* Mayor que el de los productos */
+}
+
+.dropdown-toggle {
+    width: 100%;
+    padding: 15px 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+/* --- CORRECCIÓN MENÚ DESPLEGABLE --- */
+
+/* El contenedor principal */
+.category-dropdown-container {
+    position: relative; 
+    margin: 15px auto;
+    max-width: 1170px; /* Alineado con tu container */
+    z-index: 1100; 
+}
+
+/* Botón principal */
+.dropdown-toggle {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--white);
+    border: 1px solid #eee;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+}
+
+/* MENÚ FLOTANTE */
+
+
+
+
+/* BOTONES DE CATEGORÍA */
+.cat-btn {
+    color: #2d3436 !important; /* Fuerza el color gris oscuro/negro */
+    display: flex !important;   /* Asegura que no estén con display: none */
+    opacity: 1 !important;      /* Asegura que no sean transparentes */
+    visibility: visible !important;
+}
+
+.cat-btn:hover {
+    background: #edf2f4;
+    border-color: var(--secondary);
+}
+
+.cat-btn.active {
+    background: var(--dark) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.cat-count {
+    background: rgba(0,0,0,0.08);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+.cat-btn.active .cat-count {
+    background: rgba(255,255,255,0.2);
+}
+
+.arrow-rotate {
+    transform: rotate(180deg);
+}
+
+
+#categoryContainer {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100px !important;
+    background: white !important;
+}
+
+/* RESET TOTAL DEL MENÚ */
+.category-dropdown-container {
+    position: relative;
+    z-index: 3000; /* Super alto para que no lo tape el carrusel */
+    margin: 10px auto;
+    width: 95%;
+    max-width: 1200px;
+}
+
+
+.category-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px;
+}
+
+.cat-btn {
+    background: #f8f9fa !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.cat-btn.active {
+    background: #FF6B6B !important;
+    color: white !important;
+}
+
+/* Contenedor del menú con animación de despliegue */
+.category-nav {
+    display: grid !important; /* Usamos grid para animar la altura */
+    grid-template-rows: 0fr;   /* Empieza en altura 0 */
+    transition: grid-template-rows 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;      /* Evita clics cuando está cerrado */
+    
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 3000;
+}
+
+/* El truco: animamos el contenido interno */
+.category-nav > div {
+    overflow: hidden; /* Necesario para que el efecto funcione */
+}
+
+/* ESTADO ABIERTO */
+.category-nav.open {
+    grid-template-rows: 1fr;   /* Se expande suavemente */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding: 10px 0; /* Un poco de espacio interno */
+}
+
+/* Animación de la flecha */
+.arrow-icon {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.arrow-rotate {
+    transform: rotate(180deg);
+}
+
+/* Contenedor que une Categorías + Buscador */
+.search-filter-container {
+    display: flex;
+    flex: 1;
+    max-width: 600px; /* Un poco más ancho ahora */
+    margin: 0 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: visible; /* Importante para que el dropdown no se corte */
+}
+
+/* Ajuste del botón de categorías dentro del buscador */
+.category-dropdown-container {
+    margin: 0;
+    width: auto;
+    border-right: 1px solid #eee;
+}
+
+.dropdown-toggle {
+    border: none !important;
+    background: transparent !important;
+    padding: 10px 15px !important;
+    white-space: nowrap;
+    height: 100%;
+    border-radius: 8px 0 0 8px !important;
+    box-shadow: none !important;
+}
+
+.dropdown-toggle:hover {
+    background: #f8f9fa !important;
+}
+
+/* Ajuste de la barra de búsqueda para que pegue al menú */
+.search-bar {
+    flex: 1;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.search-bar input {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* --- EFECTOS HOVER PARA LAS CATEGORÍAS --- */
+.cat-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-btn:hover {
+    background-color: var(--secondary) !important; /* El color turquesa que tienes */
+    color: white !important;
+    padding-left: 20px !important; /* Pequeño empuje lateral */
+}
+
+.cat-btn:hover .cat-count {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+}
+
+/* Estilo para ocultar texto en móviles si es muy largo */
+@media (max-width: 600px) {
+    .btn-text { display: none; }
+    .hide-mobile { display: none; }
+    .search-filter-container { margin: 5px 0; }
+}
+
+.header {
+    z-index: 4000; /* Asegura que el dropdown pase por encima de todo */
+}
+
+.category-nav {
+    width: 250px; /* Ancho fijo para que no sea tan gigante en desktop */
+    top: 110%;
+}

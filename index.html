@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mil Colores | Papelería y Miscelánea</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+        <img src="img/milcolores.png" alt="Mil Colores" class="logo-img">
+            </div>
+            <div class="container">
+    <div class="category-dropdown-container container">
+    <button class="dropdown-toggle" onclick="toggleCategoryMenu()">
+        <span><i class="ri-function-line"></i> Explorar Categorías</span>
+        <i class="ri-arrow-down-s-line arrow-icon" id="menuArrow"></i>
+    </button>
+    
+    <nav class="category-nav" id="categoryNav">
+        <div id="categoryContainer" class="category-list">
+            </div>
+    </nav>
+</div>
+</div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
+                <button id="searchBtn"><i class="ri-search-line"></i></button>
+            </div>
+            <button class="btn-contact" onclick="toggleModal('contactModal')">
+                <i class="ri-customer-service-2-line"></i> Contáctanos
+            </button>
+           
+        </div>
+        
+    </header>
+</div>
+
+    <main class="container">
+        
+        <section class="hero-carousel">
+    <div class="carousel-container" id="carousel">
+        <div class="slide" style="background: linear-gradient(135deg, #FF6B6B, #FF8E8E);">
+    <div class="slide-content">
+        <span class="tag">Oferta de Temporada</span>
+        <h2>¡Regreso a Clases! 🎒</h2>
+        <p>20% de descuento en cuadernos. Finaliza en:</p>
+        
+        <div id="countdown" class="countdown-timer">
+            <div class="time-block"><span id="hours">00</span><small>hrs</small></div>
+            <div class="time-block"><span id="minutes">00</span><small>min</small></div>
+            <div class="time-block"><span id="seconds">00</span><small>seg</small></div>
+        </div>
+
+        <button onclick="filterByCategory(null, 'Papel')" class="btn-hero">Ver Ofertas</button>
+    </div>
+</div>
+        <div class="slide" style="background: linear-gradient(135deg, #4ECDC4, #55EFC4);">
+            <div class="slide-content">
+                <span class="tag">Nuevo Ingreso</span>
+                <h2>Arte y Creatividad 🎨</h2>
+                <p>Nuevos sets de marcadores profesionales ya disponibles.</p>
+                <button onclick="filterByCategory(null, 'Arte')" class="btn-hero">Explorar Arte</button>
+            </div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #6C5CE7, #A29BFE);">
+            <div class="slide-content">
+                <span class="tag">Envío Gratis</span>
+                <h2>Envíos a todo el país 🇪🇨</h2>
+                <p>Por compras mayores a $30, tu envío en Quito es gratis.</p>
+                <button onclick="scrollToProducts()" class="btn-hero">Comprar Ahora</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="carousel-dots" id="carouselDots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+</section>
+
+<section class="smart-kits container">
+    <div class="section-header">
+        <h3><i class="ri-magic-line"></i> Compra por Kits</h3>
+        <p>Ahorra tiempo con nuestras selecciones listas para llevar</p>
+    </div>
+    <div class="kits-grid">
+        <div class="kit-card" onclick="addKitToCart('escolar')">
+            <div class="kit-badge">Popular</div>
+            <h4>Kit Escolar Básico</h4>
+            <p>Cuaderno + Lápices + Borrador + Esfero</p>
+            <span class="kit-price">Por solo $7.25</span>
+            <button class="btn-kit">Añadir Kit al Carrito</button>
+        </div>
+        <div class="kit-card" onclick="addKitToCart('oficina')">
+            <h4>Kit Home Office</h4>
+            <p>Resma + Marcadores + Notas Adhesivas</p>
+            <span class="kit-price">Por solo $10.75</span>
+            <button class="btn-kit">Añadir Kit al Carrito</button>
+        </div>
+    </div>
+</section>
+
+        <section id="products-section" class="products-section">
+            <h3>Nuestros Productos</h3>
+            <div id="searchFeedback" class="search-feedback" style="display: none;">
+    <p>Mostrando resultados para: <strong id="searchTermDisplay"></strong></p>
+    <button onclick="clearSearch()" class="btn-clear-search">Limpiar búsqueda</button>
+</div>
+            <div id="productGrid" class="product-grid">
+                </div>
+        </section>
+    </main>
+
+    <div class="floating-cart" onclick="toggleCart()">
+        <i class="ri-shopping-cart-2-fill"></i>
+        <span id="cartCount" class="badge">0</span>
+    </div>
+
+    <aside id="miniCheckout" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Pedido 🛍️</h3>
+            <button class="close-btn" onclick="toggleCart()"><i class="ri-close-line"></i></button>
+        </div>
+
+        <div class="cart-body">
+            <div id="cartItems" class="cart-items-container">
+                </div>
+
+            <div class="checkout-form">
+                <h4>Datos de Envío</h4>
+                <div class="form-group">
+                    <label>Tu Nombre (Opcional)</label>
+                    <input type="text" id="clientName" placeholder="Ej: Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label>Ciudad de Destino</label>
+                    <select id="citySelector">
+                        <option value="" disabled selected>Selecciona tu ciudad</option>
+                        <option value="Quito">Quito ($2.00)</option>
+                        <option value="Guayaquil">Guayaquil ($4.00)</option>
+                        <option value="Cuenca">Cuenca ($4.00)</option>
+                        <option value="Otro">Otras Ciudades ($6.00)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotalDisplay">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Envío:</span>
+                <span id="shippingDisplay">$0.00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total a Pagar:</span>
+                <span id="totalDisplay">$0.00</span>
+            </div>
+            <button id="btnWhatsapp" class="btn-whatsapp" onclick="checkoutWhatsApp()">
+                <i class="ri-whatsapp-line"></i> Finalizar pedido por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <div id="overlay" class="overlay" onclick="closeAll()"></div>
+
+    <div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="toggleModal('contactModal')">&times;</span>
+        
+        <div class="modal-header">
+            <i class="ri-customer-service-2-fill modal-icon"></i>
+            <h3>Atención al Cliente</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="info-section">
+    <h4><i class="ri-map-pin-2-line"></i> Ubicación</h4>
+    <p>Landázuri, Quito 170208, Ecuador</p>
+    <a href="https://maps.app.goo.gl/F4zWEJRfUJVPePEL6" target="_blank" class="map-link">Ver en Google Maps</a>
+    
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.7263857748449!2d-78.4260146378503!3d-0.1091075294827251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59950e23c705d%3A0x9b06103b1122604f!2sPapeler%C3%ADa%20y%20Variedades%20Mil%20Colores!5e0!3m2!1ses!2sco!4v1770729077854!5m2!1ses!2sco" 
+            width="100%" 
+            height="150" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+            <div class="info-section">
+                <h4><i class="ri-time-line"></i> Horarios</h4>
+                <p>Lunes a Viernes: 08:30 - 18:30</p>
+                <p>Sábados: 09:00 - 14:00</p>
+            </div>
+
+            <div class="info-section">
+                <h4><i class="ri-truck-line"></i> Envíos Nacionales</h4>
+                <p>Realizamos envíos a todo el país vía Servientrega o Cooperativa.</p>
+            </div>
+
+            <div class="social-grid">
+                <a href="tel:0991234567" class="social-item">
+                    <i class="ri-phone-fill"></i>
+                    <span>Llamar</span>
+                </a>
+                <a href="#" class="social-item fb">
+                    <i class="ri-facebook-fill"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="#" class="social-item ig">
+                    <i class="ri-instagram-line"></i>
+                    <span>Instagram</span>
+                </a>
+                <button class="social-item share" onclick="shareStore()">
+                    <i class="ri-share-forward-line"></i>
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h2 class="footer-logo">Mil Colores 🎨</h2>
+            <p>Tu papelería de confianza en Ecuador. Calidad y variedad para tu oficina, escuela y hogar.</p>
+            <div class="footer-socials">
+                <a href="#"><i class="ri-facebook-box-fill"></i></a>
+                <a href="#"><i class="ri-instagram-fill"></i></a>
+                <a href="#"><i class="ri-whatsapp-fill"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="scrollToProducts()">Catálogo</a></li>
+                <li><a href="javascript:void(0)" onclick="toggleModal('contactModal')">Sobre Nosotros</a></li>
+                <li><a href="javascript:void(0)" onclick="toggleModal('contactModal')">Ubicación</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Confianza Mil Colores</h4>
+            <div class="trust-icons">
+                <div class="trust-item">
+                    <i class="ri-truck-line"></i>
+                    <span>Envíos a todo el país</span>
+                </div>
+                <div class="trust-item">
+                    <i class="ri-shield-check-line"></i>
+                    <span>Pago seguro contra entrega</span>
+                </div>
+            </div>
+            <div class="payment-methods">
+                <p>Aceptamos:</p>
+                <div class="payment-badges">
+                    <span class="badge-pay">Efectivo</span>
+                    <span class="badge-pay">Transferencia</span>
+                    <span class="badge-pay">Deuna!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2024 Mil Colores Papelería. Todos los derechos reservados.</p>
+            <p><small>Hecho con ❤️ para emprendedores.</small></p>
+        </div>
+    </div>
+</footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
