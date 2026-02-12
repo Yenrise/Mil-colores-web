@@ -27,9 +27,9 @@ body { background-color: var(--light); color: var(--dark); padding-bottom: 80px;
 .header {
     
     background: linear-gradient(to right, #FF6B6B, #FFD93D, #6BCB77, #4D96FF, #9B59B6);
-    position: sticky;
+    position: relative;
     top: 0;
-    z-index: 4000;
+    z-index: 2000;
     box-shadow: none; /* Quitamos la sombra típica para usar la curva */
     padding: 5px; /* Importante para que el SVG pegue abajo */
 }
@@ -882,4 +882,5 @@ body { background-color: var(--light); color: var(--dark); padding-bottom: 80px;
 .category-nav {
     width: 250px; /* Ancho fijo para que no sea tan gigante en desktop */
     top: 110%;
+
 }
